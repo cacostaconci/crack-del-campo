@@ -49,7 +49,8 @@ historico.columns = historico.columns.str.strip()
 # Detectar automáticamente la columna de serie
 col_serie_df = [c for c in df.columns if "serie" in c.lower()][0]
 col_serie_hist = [c for c in historico.columns if "serie" in c.lower()][0]
-
+# Eliminar columnas duplicadas generadas por el merge
+df = df.loc[:, ~df.columns.duplicated()]
 df = df.merge(
     historico,
     left_on=col_serie_df,
@@ -511,7 +512,8 @@ with col2:
 # --------------------------------------------------
 # RANKING GENERAL
 # --------------------------------------------------
-
+st.write("Columnas duplicadas:")
+st.write(df.columns[df.columns.duplicated()].tolist())
 st.divider()
 
 st.subheader(
