@@ -518,6 +518,8 @@ with col2:
 # --------------------------------------------------
 
 st.divider()
+st.write("Columnas ranking:")
+st.write(ranking.columns.tolist())
 
 st.subheader(
     "🏆 Ranking Crack del Campo"
