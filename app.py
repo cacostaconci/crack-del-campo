@@ -599,8 +599,12 @@ st.subheader(
 
 detalle = df.loc[:, ~df.columns.duplicated()].copy()
 
+st.write(detalle["AUTOMANTAIN"].unique())
+
 st.dataframe(
     detalle,
     use_container_width=True,
     hide_index=True
+)
+
 )
