@@ -597,7 +597,10 @@ st.subheader(
     "📋 Detalle Completo"
 )
 
+detalle = df.loc[:, ~df.columns.duplicated()].copy()
+
 st.dataframe(
-    df,
-    use_container_width=True
+    detalle,
+    use_container_width=True,
+    hide_index=True
 )
