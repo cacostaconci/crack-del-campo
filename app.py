@@ -617,13 +617,9 @@ with col1:
         fig2,
         use_container_width=True
     )
-
-    st.caption(
-        "st.caption(
+st.caption(
     "La adopción representa el porcentaje de máquinas participantes que utilizan cada tecnología dentro de la categoría seleccionada."
 )
-"
-    )
 
 with col2:
 
