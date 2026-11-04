@@ -222,7 +222,10 @@ for archivo in archivos_historicos:
 # --------------------------------------------------
 
 st.title("🚜 Crack del Campo - Cosechadoras")
-
+tab_basico, tab_avanzado = st.tabs([
+    "🔹 Básico",
+    "🚀 Avanzado"
+])
 # --------------------------------------------------
 # KPI GENERALES
 # --------------------------------------------------
