@@ -517,10 +517,6 @@ with col2:
 # RANKING GENERAL
 # --------------------------------------------------
 
-st.divider()
-st.write("Columnas ranking:")
-st.write(ranking.columns.tolist())
-
 st.subheader(
     "🏆 Ranking Crack del Campo"
 )
@@ -536,8 +532,11 @@ ranking = (
 ranking.insert(
     0,
     "Posición",
-    range(1, len(ranking)+1)
+    range(1, len(ranking) + 1)
 )
+
+# Eliminar columnas duplicadas
+ranking = ranking.loc[:, ~ranking.columns.duplicated()]
 
 st.dataframe(
     ranking[
