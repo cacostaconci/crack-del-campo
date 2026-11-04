@@ -568,7 +568,10 @@ st.subheader(
 
 renovacion = df[
     df["Estado Licencia"] != "Vigente"
-]
+].copy()
+
+# Eliminar columnas duplicadas
+renovacion = renovacion.loc[:, ~renovacion.columns.duplicated()]
 
 st.dataframe(
     renovacion[
@@ -579,7 +582,8 @@ st.dataframe(
             "Vencimiento Licencia"
         ]
     ],
-    use_container_width=True
+    use_container_width=True,
+    hide_index=True
 )
 
 
