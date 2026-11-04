@@ -216,7 +216,13 @@ for archivo in archivos_historicos:
     st.sidebar.write(
         os.path.basename(archivo)
     )
+df_basico = df[
+    df["Crack del campo"].isin(["AT", "RS", "ATA", "ATTA"])
+].copy()
 
+df_avanzado = df[
+    ~df["Crack del campo"].isin(["AT", "RS", "ATA", "ATTA"])
+].copy()
 # --------------------------------------------------
 # TITULO
 # --------------------------------------------------
