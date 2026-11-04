@@ -599,8 +599,35 @@ st.subheader(
 
 detalle = df.loc[:, ~df.columns.duplicated()].copy()
 
+columnas_detalle = [
+    "Organización",
+    "Máquina",
+    "Número de serie de la máquina",
+    "Nombre Operador",
+    "Contacto/Whatsapp",
+    "Sucursal",
+    "Crack del campo",
+    "Licencia",
+    "Vencimiento Licencia",
+    "Estado Licencia",
+    "AT",
+    "RS",
+    "ATA",
+    "ATTA",
+    "AM",
+    "AUTOPATH",
+    "HSA",
+    "GSA",
+    "Puntaje Crack"
+]
+
+columnas_detalle = [
+    col for col in columnas_detalle
+    if col in detalle.columns
+]
+
 st.dataframe(
-    detalle,
+    detalle[columnas_detalle],
     use_container_width=True,
     hide_index=True
 )
