@@ -452,6 +452,13 @@ if categoria == "Basico":
         "ATTA": df["ATTA"].mean()
     }
 
+    tecnologias_adopcion = [
+        "AT",
+        "RS",
+        "ATA",
+        "ATTA"
+    ]
+
 elif categoria == "Avanzado":
 
     tecnologias_grafico = {
@@ -464,6 +471,17 @@ elif categoria == "Avanzado":
         "HSA": df["HSA"].mean(),
         "GSA": df["GSA"].mean()
     }
+
+    tecnologias_adopcion = [
+        "AT",
+        "RS",
+        "ATA",
+        "ATTA",
+        "AM",
+        "AUTOPATH",
+        "HSA",
+        "GSA"
+    ]
 
 else:
 
@@ -478,81 +496,22 @@ else:
         "GSA": df["GSA"].mean()
     }
 
-adopcion = pd.DataFrame(
-    list(tecnologias_grafico.items()),
-    columns=["Tecnología", "Promedio"]
-)
+    tecnologias_adopcion = [
+        "AT",
+        "RS",
+        "ATA",
+        "ATTA",
+        "AM",
+        "AUTOPATH",
+        "HSA",
+        "GSA"
+    ]
 
-adopcion = adopcion.sort_values(
-    "Promedio",
-    ascending=False
-)
+# -------------------------
+# DATAFRAME USO PROMEDIO
+# -------------------------
 
-col1, col2 = st.columns([3,1])
-
-with col1:
-
-    fig = px.bar(
-        adopcion,
-        x="Tecnología",
-        y="Promedio",
-        text="Promedio",
-        title="Promedio de utilización por tecnología"
-    )
-
-    fig.update_traces(
-        texttemplate="%{text:.1f}%",
-        textposition="outside"
-    )
-
-    fig.update_layout(
-        yaxis_title="Uso (%)",
-        xaxis_title="",
-        height=500
-    )
-
-    st.plotly_chart(
-        fig,
-        use_container_width=True
-    )
-st.caption(
-    "Este indicador refleja el promedio de uso de cada tecnología considerando únicamente las máquinas con datos registrados para dicha tecnología."
-)
-with col2:
-
-    st.markdown("### 📖 Referencias")
-
-    if categoria == "Basico":
-
-        st.markdown("""
-**AT** → AutoTrac™
-
-**RS** → RowSense™
-
-**ATA** → Active Terrain Adjustment™
-
-**ATTA** → Automatización de Maniobras AutoTrac™
-""")
-
-    else:
-
-        st.markdown("""
-**AT** → AutoTrac™
-
-**RS** → RowSense™
-
-**ATA** → Active Terrain Adjustment™
-
-**ATTA** → Automatización de Maniobras AutoTrac™
-
-**AM** → Auto Maintain
-
-**AUTOPATH** → AutoPath™
-
-**HSA** → Harvest Settings Automation
-
-**GSA** → Ground Speed Automation
-""")
+uso_prom
 # --------------------------------------------------
 # RANKING GENERAL
 # --------------------------------------------------
