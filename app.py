@@ -497,7 +497,7 @@ with col1:
         x="Tecnología",
         y="Promedio",
         text="Promedio",
-        title="Promedio de uso en máquinas activas"
+        title="Promedio de utilización por tecnología"
     )
 
     fig.update_traces(
