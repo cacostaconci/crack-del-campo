@@ -18,10 +18,8 @@ st.set_page_config(
 # LEER BASE
 # --------------------------------------------------
 
-df = pd.read_csv(
-    "BASE DE CLIENTES POR DESAFIO(Crack del campo - Cosechadoras).csv",
-    encoding="latin1",
-    sep=";"
+df = pd.read_excel(
+    "BASE DE CLIENTES POR DESAFIO(Crack del campo - Cosechadoras).xlsx"
 )
 
 # --------------------------------------------------
