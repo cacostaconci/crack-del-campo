@@ -49,9 +49,14 @@ st.write(df.columns.tolist())
 df.columns = df.columns.str.strip()
 historico.columns = historico.columns.str.strip()
 
+# Detectar automáticamente la columna de serie
+col_serie_df = [c for c in df.columns if "serie" in c.lower()][0]
+col_serie_hist = [c for c in historico.columns if "serie" in c.lower()][0]
+
 df = df.merge(
     historico,
-    on="Número de serie de la máquina",
+    left_on=col_serie_df,
+    right_on=col_serie_hist,
     how="left"
 )
 
