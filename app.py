@@ -133,7 +133,6 @@ tec_avanzado = [
     "AT",
     "RS",
     "ATA",
-    "ATTA",
     "AM",
     "AUTOPATH",
     "HSA",
@@ -217,24 +216,18 @@ for archivo in archivos_historicos:
         os.path.basename(archivo)
     )
 df_basico = df[
-    df["Crack del campo"].isin(["AT", "RS", "ATA", "ATTA"])
+    df["Crack del campo"] == "Basico"
 ].copy()
 
 df_avanzado = df[
-    ~df["Crack del campo"].isin(["AT", "RS", "ATA", "ATTA"])
+    df["Crack del campo"] == "Avanzado"
 ].copy()
 # --------------------------------------------------
 # TITULO
 # --------------------------------------------------
 
 st.title("🚜 Crack del Campo - Cosechadoras")
-tab_basico, tab_avanzado = st.tabs([
-    "🔹 Básico",
-    "🚀 Avanzado"
-])
-with tab_basico:
 
-    df = df_basico
 # --------------------------------------------------
 # KPI GENERALES
 # --------------------------------------------------
