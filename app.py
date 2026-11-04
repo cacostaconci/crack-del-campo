@@ -232,6 +232,9 @@ tab_basico, tab_avanzado = st.tabs([
     "🔹 Básico",
     "🚀 Avanzado"
 ])
+with tab_basico:
+
+    df = df_basico
 # --------------------------------------------------
 # KPI GENERALES
 # --------------------------------------------------
