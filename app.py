@@ -43,9 +43,6 @@ historico = historico.drop_duplicates(
     subset=["Número de serie de la máquina"]
 )
 
-st.write("Columnas antes del merge:")
-st.write(df.columns.tolist())
-
 df.columns = df.columns.str.strip()
 historico.columns = historico.columns.str.strip()
 
@@ -59,7 +56,16 @@ df = df.merge(
     right_on=col_serie_hist,
     how="left"
 )
-
+# Corregir nombres de columnas con problemas de acentos
+df.columns = (
+    df.columns
+    .str.replace("Ã¡", "á")
+    .str.replace("Ã©", "é")
+    .str.replace("Ã­", "í")
+    .str.replace("Ã³", "ó")
+    .str.replace("Ãº", "ú")
+    .str.replace("Ã±", "ñ")
+)
 if "Máquina_x" in df.columns:
     df = df.rename(
         columns={"Máquina_x": "Máquina"}
