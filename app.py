@@ -316,8 +316,48 @@ def mostrar_podio(df_podio, titulo):
 
     st.markdown(f"### {titulo}")
 
-    if len(df_podio) < 3:
-        st.info("No hay suficientes participantes.")
+    # Eliminar registros sin puntaje
+    df_podio = df_podio[
+        df_podio["Puntaje Crack"].notna()
+    ]
+
+    cantidad = len(df_podio)
+
+    if cantidad == 0:
+        st.info("No hay participantes con puntaje disponible.")
+        return
+
+    if cantidad == 1:
+
+        col1, col2, col3 = st.columns(3)
+
+        with col2:
+            st.markdown("#### 🥇 Primero")
+            st.write(df_podio.iloc[0]["Organización"])
+            st.markdown(
+                f"## {df_podio.iloc[0]['Puntaje Crack']:.1f}%"
+            )
+
+        return
+
+    if cantidad == 2:
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            st.markdown("#### 🥈 Segundo")
+            st.write(df_podio.iloc[1]["Organización"])
+            st.markdown(
+                f"### {df_podio.iloc[1]['Puntaje Crack']:.1f}%"
+            )
+
+        with col2:
+            st.markdown("#### 🥇 Primero")
+            st.write(df_podio.iloc[0]["Organización"])
+            st.markdown(
+                f"## {df_podio.iloc[0]['Puntaje Crack']:.1f}%"
+            )
+
         return
 
     col1, col2, col3 = st.columns(3)
