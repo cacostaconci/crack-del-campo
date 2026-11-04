@@ -43,6 +43,12 @@ historico = historico.drop_duplicates(
     subset=["Número de serie de la máquina"]
 )
 
+st.write("Columnas antes del merge:")
+st.write(df.columns.tolist())
+
+df.columns = df.columns.str.strip()
+historico.columns = historico.columns.str.strip()
+
 df = df.merge(
     historico,
     on="Número de serie de la máquina",
