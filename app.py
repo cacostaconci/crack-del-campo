@@ -506,7 +506,153 @@ else:
         "HSA",
         "GSA"
     ]
+# -------------------------
+# USO PROMEDIO
+# -------------------------
 
+uso_promedio = pd.DataFrame(
+    list(tecnologias_grafico.items()),
+    columns=["Tecnología", "Promedio"]
+)
+
+uso_promedio = uso_promedio.sort_values(
+    "Promedio",
+    ascending=False
+)
+
+# -------------------------
+# ADOPCION
+# -------------------------
+
+adopcion_real = {}
+
+for tec in tecnologias_adopcion:
+
+    total_con_dato = df[tec].notna().sum()
+
+    if total_con_dato > 0:
+
+        adopcion_real[tec] = (
+            (df[tec] > 0).sum()
+            / total_con_dato
+            * 100
+        )
+
+    else:
+
+        adopcion_real[tec] = 0
+
+adopcion_df = pd.DataFrame(
+    {
+        "Tecnología": list(adopcion_real.keys()),
+        "Adopción": list(adopcion_real.values())
+    }
+)
+
+adopcion_df = adopcion_df.sort_values(
+    "Adopción",
+    ascending=False
+)
+
+col1, col2 = st.columns([3,1])
+
+with col1:
+
+    st.markdown("#### Uso promedio de la tecnología")
+
+    fig = px.bar(
+        uso_promedio,
+        x="Tecnología",
+        y="Promedio",
+        text="Promedio",
+        title="Promedio de utilización por tecnología"
+    )
+
+    fig.update_traces(
+        texttemplate="%{text:.1f}%",
+        textposition="outside"
+    )
+
+    fig.update_layout(
+        yaxis_title="Uso (%)",
+        xaxis_title="",
+        height=500
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+
+    st.caption(
+        "Este indicador refleja el promedio de uso de cada tecnología considerando únicamente las máquinas con datos registrados para dicha tecnología."
+    )
+
+    st.markdown("#### Adopción de la tecnología")
+
+    fig2 = px.bar(
+        adopcion_df,
+        x="Tecnología",
+        y="Adopción",
+        text="Adopción",
+        title="Porcentaje de máquinas que utilizan la tecnología"
+    )
+
+    fig2.update_traces(
+        texttemplate="%{text:.1f}%",
+        textposition="outside"
+    )
+
+    fig2.update_layout(
+        yaxis_title="Adopción (%)",
+        xaxis_title="",
+        height=500
+    )
+
+    st.plotly_chart(
+        fig2,
+        use_container_width=True
+    )
+
+    st.caption(
+        "La adopción representa el porcentaje de máquinas con datos registrados que presentan utilización de la tecnología."
+    )
+
+with col2:
+
+    st.markdown("### 📖 Referencias")
+
+    if categoria == "Basico":
+
+        st.markdown("""
+**AT** → AutoTrac™
+
+**RS** → RowSense™
+
+**ATA** → Active Terrain Adjustment™
+
+**ATTA** → Automatización de Maniobras AutoTrac™
+""")
+
+    else:
+
+        st.markdown("""
+**AT** → AutoTrac™
+
+**RS** → RowSense™
+
+**ATA** → Active Terrain Adjustment™
+
+**ATTA** → Automatización de Maniobras AutoTrac™
+
+**AM** → Auto Maintain
+
+**AUTOPATH** → AutoPath™
+
+**HSA** → Harvest Settings Automation
+
+**GSA** → Ground Speed Automation
+""")
 
 # --------------------------------------------------
 # RANKING GENERAL
