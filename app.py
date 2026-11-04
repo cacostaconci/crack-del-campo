@@ -526,15 +526,19 @@ uso_promedio = uso_promedio.sort_values(
 
 adopcion_real = {}
 
+total_maquinas = len(df)
+
 for tec in tecnologias_adopcion:
 
-    total_con_dato = df[tec].notna().sum()
+    maquinas_que_usan = (
+        df[tec].fillna(0) > 0
+    ).sum()
 
-    if total_con_dato > 0:
+    if total_maquinas > 0:
 
         adopcion_real[tec] = (
-            (df[tec] > 0).sum()
-            / total_con_dato
+            maquinas_que_usan
+            / total_maquinas
             * 100
         )
 
