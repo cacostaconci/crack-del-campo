@@ -49,15 +49,18 @@ historico.columns = historico.columns.str.strip()
 # Detectar automáticamente la columna de serie
 col_serie_df = [c for c in df.columns if "serie" in c.lower()][0]
 col_serie_hist = [c for c in historico.columns if "serie" in c.lower()][0]
-# Eliminar columnas duplicadas generadas por el merge
-df = df.loc[:, ~df.columns.duplicated()]
+
 df = df.merge(
     historico,
     left_on=col_serie_df,
     right_on=col_serie_hist,
     how="left"
 )
-# Corregir nombres de columnas con problemas de acentos
+
+# Eliminar columnas duplicadas
+df = df.loc[:, ~df.columns.duplicated()]
+
+# Corregir nombres con acentos
 df.columns = (
     df.columns
     .str.replace("Ã¡", "á")
@@ -67,6 +70,7 @@ df.columns = (
     .str.replace("Ãº", "ú")
     .str.replace("Ã±", "ñ")
 )
+
 if "Máquina_x" in df.columns:
     df = df.rename(
         columns={"Máquina_x": "Máquina"}
@@ -512,8 +516,7 @@ with col2:
 # --------------------------------------------------
 # RANKING GENERAL
 # --------------------------------------------------
-st.write("Columnas duplicadas:")
-st.write(df.columns[df.columns.duplicated()].tolist())
+
 st.divider()
 
 st.subheader(
