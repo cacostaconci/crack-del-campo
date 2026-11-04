@@ -619,7 +619,10 @@ with col1:
     )
 
     st.caption(
-        "La adopción representa el porcentaje de máquinas con datos registrados que presentan utilización de la tecnología."
+        "st.caption(
+    "La adopción representa el porcentaje de máquinas participantes que utilizan cada tecnología dentro de la categoría seleccionada."
+)
+"
     )
 
 with col2:
