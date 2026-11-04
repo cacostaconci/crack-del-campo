@@ -219,11 +219,7 @@ for archivo in archivos_historicos:
 # --------------------------------------------------
 
 st.title("🚜 Crack del Campo - Cosechadoras")
-st.write("Columnas BASE")
-st.write(df.columns.tolist())
 
-st.write("Columnas HISTORICO")
-st.write(historico.columns.tolist())
 # --------------------------------------------------
 # KPI GENERALES
 # --------------------------------------------------
