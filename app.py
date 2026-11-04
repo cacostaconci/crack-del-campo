@@ -589,8 +589,8 @@ with col1:
     )
 
     st.caption(
-    "La adopción representa el porcentaje de máquinas participantes que utilizan cada tecnología dentro de la categoría seleccionada.'
-)
+        "Este indicador refleja el promedio de uso de cada tecnología considerando únicamente las máquinas con datos registrados para dicha tecnología."
+    )
 
     st.markdown("#### Adopción de la tecnología")
 
@@ -617,9 +617,10 @@ with col1:
         fig2,
         use_container_width=True
     )
-st.caption(
-    "La adopción representa el porcentaje de máquinas participantes que utilizan cada tecnología dentro de la categoría seleccionada."
-)
+
+    st.caption(
+        "La adopción representa el porcentaje de máquinas participantes que utilizan cada tecnología dentro de la categoría seleccionada."
+    )
 
 with col2:
 
