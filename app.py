@@ -515,7 +515,9 @@ with col1:
         fig,
         use_container_width=True
     )
-
+st.caption(
+    "Este indicador refleja el promedio de uso de cada tecnología considerando únicamente las máquinas con datos registrados para dicha tecnología."
+)
 with col2:
 
     st.markdown("### 📖 Referencias")
